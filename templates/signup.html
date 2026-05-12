@@ -1,0 +1,22 @@
+<div class="auth-card">
+    <div class="auth-header">
+        <h2>Initialize</h2>
+        <p style="color: #94a3b8; margin-bottom: 2rem;">Join the digital collective</p>
+    </div>
+
+    <form action="/signup" method="POST">
+        <div class="input-group">
+            <label>Choose Identity</label>
+            <input type="text" name="username" class="auth-input" placeholder="Create username" required>
+        </div>
+        <div class="input-group">
+            <label>Security Phrase</label>
+            <input type="password" name="password" class="auth-input" placeholder="Min. 8 characters" required>
+        </div>
+        <button type="submit" class="btn-auth" style="background: #22c55e;">Confirm Registration</button>
+    </form>
+
+    <p style="margin-top: 2rem; color: #94a3b8; font-size: 0.9rem;">
+        Already registered? <a href="/login" style="color: #22c55e; text-decoration: none; font-weight: 600;">Sign In</a>
+    </p>
+</div>

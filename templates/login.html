@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus | Secure Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="blob"></div>
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p style="color: #94a3b8; margin-bottom: 2rem;">Access the curation deck</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div style="background: rgba(239, 68, 68, 0.1); color: #f87171; padding: 12px; border-radius: 10px; margin-bottom: 20px; font-size: 0.85rem; border: 1px solid rgba(239, 68, 68, 0.2);">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <div class="input-group">
+                    <label>Identification</label>
+                    <input type="text" name="username" class="auth-input" placeholder="Enter username" required autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>Access Key</label>
+                    <input type="password" name="password" class="auth-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-auth">Authorize Access</button>
+            </form>
+
+            <p style="margin-top: 2rem; color: #94a3b8; font-size: 0.9rem;">
+                New to the platform? <a href="/signup" style="color: #6366f1; text-decoration: none; font-weight: 600;">Initialize Account</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

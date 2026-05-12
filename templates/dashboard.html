@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header><h1>Library Analytics Dashboard</h1></header>
+    <nav style="text-align: center; margin-bottom: 20px;">
+        <a href="/">Back to Library</a>
+    </nav>
+
+    <main style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">
+        <div style="width: 300px;">
+            <h3>Availability</h3>
+            <canvas id="availabilityChart"></canvas>
+        </div>
+    </main>
+
+    <script>
+    // We use |tojson or default values to keep the JS parser happy
+    const availableCount = Number("{{ available }}") || 0;
+    const issuedCount = Number("{{ issued }}") || 0;
+
+    const ctx = document.getElementById('availabilityChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Available', 'Issued'],
+            datasets: [{
+                data: [availableCount, issuedCount],
+                backgroundColor: ['#27ae60', '#e74c3c'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Book Availability Status'
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
